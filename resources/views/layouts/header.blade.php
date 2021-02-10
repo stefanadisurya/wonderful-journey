@@ -1,12 +1,13 @@
 <div class="collapse navbar-collapse d-inline-block" id="navbarNav">
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+        <span class="navbar-toggler-icon"><i class="fas fa-bars" style="color:#ffffff; font-size:28px;"></i></span>
     </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
     @guest
       {{-- Jika guest yang mengakses halaman --}}
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-            <a class="nav-link text-white js-scroll-trigger mr-3" href=" {{ route('home') }}">Home</a>
+            <a class="nav-link text-white js-scroll-trigger mr-3" href=" {{ route('root') }}">Home</a>
         </li>
 
         <li class="nav-item dropdown">
@@ -15,18 +16,18 @@
             </a>
 
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item text-dark" href="{{ route('home') }}">
+                <a class="dropdown-item text-dark" href="{{ route('root') }}">
                   Beach
                 </a>
 
-                <a class="dropdown-item text-dark" href="{{ route('home') }}">
+                <a class="dropdown-item text-dark" href="{{ route('root') }}">
                     Mountain
                 </a>
               </div>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link text-white js-scroll-trigger mr-3" href=" {{ route('home') }}">About Us</a>
+            <a class="nav-link text-white js-scroll-trigger mr-3" href=" {{ route('root') }}">About Us</a>
         </li>
       </ul>
     @else
@@ -112,4 +113,5 @@
             @endif
         @endguest
       </ul>
+    </div>
   </div>
