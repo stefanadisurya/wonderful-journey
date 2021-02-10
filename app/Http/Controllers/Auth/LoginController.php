@@ -60,4 +60,9 @@ class LoginController extends Controller
             ? new JsonResponse([], 204)
             : redirect()->intended($this->redirectPath());
     }
+
+    protected function credentials(Request $request)
+    {
+        return $request->only('role', $this->username(), 'password');
+    }
 }

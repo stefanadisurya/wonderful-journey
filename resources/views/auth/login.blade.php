@@ -39,8 +39,6 @@
                             <label for="role" class="col-md-4 col-form-label text-md-right">{{ __('Login As') }}:</label>
 
                             <div class="col-md-6">
-                                {{-- <input id="role" type="role" class="form-control @error('role') is-invalid @enderror" name="role" value="{{ old('role') }}" required autocomplete="role" autofocus> --}}
-
                                 <select id="role" name="role" class="custom-select form-control @error('role') is-invalid @enderror" required autofocus>
                                     <option value="Admin">Admin</option>
                                     <option value="User">User</option>
