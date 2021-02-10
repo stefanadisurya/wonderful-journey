@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Wonderful Journey | Details')
+@section('title', 'Wonderful Journey | My Blog Details')
 
 @section('styles')
     <style>
@@ -10,7 +10,7 @@
         }
 
         .jb-1 {
-            background-image: url('../../assets/image/header.jpg');
+            background-image: url('../../../assets/image/header.jpg');
             background-repeat: no-repeat;
             background-position: center;
             height: 500px;
@@ -32,7 +32,7 @@
 </div>
 
 <div class="container d-flex justify-content-center">
-    <div class="card my-3"  style="width: 40rem">
+    <div class="card my-3" style="width: 40rem">
         <img src="{{ asset('assets/image/' . $article->image) }}" class="card-img-top" style="height: 20rem;">
         <div class="card-body">
           <h3 class="card-title font-weight-bold">{{ $article->title }}</h3>
@@ -42,25 +42,22 @@
           @elseif ($article->category->name == "Mountain")
             <p class="card-text font-italic"><b>Category:</b> <a href="{{ route('mountain') }}" class="text-decoration-none">{{ $article->category->name }}</a></p>
           @endif
-          <p class="card-text text-muted" style="font-size: 17px;"><small class="text-muted">Last updated at {{ $article->updated_at->format('D, M d Y') }}</small></p>
+          <p class="card-text" style="font-size: 17px;"><small class="text-muted">Last updated at {{ $article->updated_at->format('D, M d Y') }}</small></p>
           <div class="row">
-              <div class="col-lg-2 mt-2">
+            <div class="col-lg-2 mt-2">
                 <a href="{{ url()->previous() }}" class="text-decoration-none">
                     <button class="btn btn-outline-dark">Back</button>
                 </a>
             </div>
-            @if (auth()->user()->id == $article->user_id)
-            <div class="col-lg-3 mt-2">
-                <form action="/user/article/{{ $article->id }}" method="POST">
-                    @method('delete')
-                    @csrf
-                    <button type="submit" class="btn btn-danger">Delete Article</button>
-                </form>
-            </div>
-            @endif
-          </div>
-          
 
+            <div class="col-lg-3 mt-2">
+                <form action="/user/{{ $user->id }}/blog/{{ $article->id }}" method="POST">
+                  @method('delete')
+                  @csrf
+                  <button type="submit" class="btn btn-danger">Delete Article</button>
+              </form>
+            </div>
+        </div>
         </div>
       </div>
 </div>

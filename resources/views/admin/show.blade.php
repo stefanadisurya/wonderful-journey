@@ -4,6 +4,11 @@
 
 @section('styles')
     <style>
+        .card {
+              -webkit-box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.15);
+              box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.15);
+          }
+
         .jb-1 {
             background-image: url('../../assets/image/header2.jpg');
             background-repeat: no-repeat;
@@ -26,21 +31,26 @@
     </div>
 </div>
 
-<div class="container">
-    <div class="card my-3">
+<div class="container d-flex justify-content-center">
+    <div class="card my-3" style="width: 40rem">
         <img src="{{ asset('assets/image/' . $article->image) }}" class="card-img-top" style="height: 20rem;">
         <div class="card-body">
           <h3 class="card-title font-weight-bold">{{ $article->title }}</h3>
-          <p class="card-text">{{ $article->description }}</p>
-          <p class="card-text"><small class="text-muted">Last updated at {{ $article->updated_at->format('D, M d Y') }}</small></p>
+          <p class="card-text text-muted mt-3" style="font-size: 17px;">{{ $article->description }}</p>
+          @if ($article->category->name == "Beach")    
+            <p class="card-text font-italic"><b>Category:</b> <a href="{{ route('beach') }}" class="text-decoration-none">{{ $article->category->name }}</a></p>
+          @elseif ($article->category->name == "Mountain")
+            <p class="card-text font-italic"><b>Category:</b> <a href="{{ route('mountain') }}" class="text-decoration-none">{{ $article->category->name }}</a></p>
+          @endif
+          <p class="card-text" style="font-size: 17px;"><small class="text-muted">Last updated at {{ $article->updated_at->format('D, M d Y') }}</small></p>
           <div class="row">
-              <div class="col-md-1 mt-2">
-                  <a href="{{ route('home') }}" class="text-decoration-none">
+              <div class="col-lg-2 mt-2">
+                  <a href="{{ url()->previous() }}" class="text-decoration-none">
                       <button class="btn btn-outline-dark">Back</button>
                   </a>
               </div>
 
-              <div class="col-md-2 mt-2">
+              <div class="col-lg-3 mt-2">
                   <form action="/admin/article/{{ $article->id }}" method="POST">
                     @method('delete')
                     @csrf

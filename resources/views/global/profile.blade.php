@@ -5,7 +5,7 @@
 @section('styles')
     <style>
         .jb-1 {
-            background-image: url('../assets/image/header.jpg');
+            background-image: url('../assets/image/header4.jpg');
             background-repeat: no-repeat;
             background-position: center;
             height: 500px;

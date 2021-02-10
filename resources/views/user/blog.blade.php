@@ -10,7 +10,7 @@
         }
         
         .jumbotron {
-            background-image: url('../assets/image/header.jpg');
+            background-image: url('../assets/image/header3.jpg');
             background-repeat: no-repeat;
             background-position: center;
             height: 500px;
@@ -56,7 +56,11 @@
                         {{ $article->title }}
                     </a>
                 </td>
-                <td>{{ $article->category->name }}</td>
+                @if ($article->category->name == "Beach")    
+                    <td><a href="{{ route('beach') }}" class="text-decoration-none text-dark">{{ $article->category->name }}</a></td>
+                @elseif ($article->category->name == "Mountain")
+                    <td><a href="{{ route('mountain') }}" class="text-decoration-none text-dark">{{ $article->category->name }}</a></td>
+                @endif
                 <td>
                     <form action="/user/blog/{{ $article->id }}" method="POST">
                         @method('delete')

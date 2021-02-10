@@ -35,11 +35,17 @@ Route::group(['middleware' => ['auth', 'roles:Admin']], function() {
 Route::group(['middleware' => ['auth', 'roles:User']], function() {
     Route::get('/user/blog', 'UserController@blog')->name('blog');
     Route::delete('/user/blog/{article}', 'UserController@destroyArticle')->name('deleteuserarticle');
-    Route::get('/user/{user}/blog/{article}', 'UserController@show')->name('showuserarticle');
+    Route::get('/user/{user}/blog/{article}', 'UserController@details')->name('showuserarticle');
     Route::delete('/user/{user}/blog/{article}', 'UserController@destroyArticle2')->name('deleteuserarticle2');
     Route::get('/user/create', 'UserController@create')->name('create');
     Route::post('/user/create', 'UserController@store');
+    Route::get('/user/article/{article}', 'UserController@show')->name('showdetails');
+    Route::delete('/user/article/{article}', 'UserController@destroyArticle3')->name('deleteuserarticle3');
 });
 
 Route::get('/', 'GuestController@home')->name('root')->middleware('guest');
-Route::get('/article/{article}', 'GlobalController@show')->name('show');
+Route::get('/article/{article}', 'GuestController@show')->name('show')->middleware('guest');
+
+Route::get('/beach', 'GlobalController@beach')->name('beach');
+Route::get('/mountain', 'GlobalController@mountain')->name('mountain');
+Route::get('/about', 'GlobalController@about')->name('about');

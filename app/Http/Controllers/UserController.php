@@ -18,6 +18,10 @@ class UserController extends Controller
         return view('user.show', ['user' => $user, 'article' => $article]);
     }
 
+    public function details(User $user, Article $article) {
+        return view('user.details', ['user' => $user, 'article' => $article]);
+    }
+
     public function destroyArticle(Article $article) {
         Article::destroy($article->id);
 
@@ -28,6 +32,12 @@ class UserController extends Controller
         Article::destroy($article->id);
 
         return redirect()->route('blog');
+    }
+
+    public function destroyArticle3(Article $article) {
+        Article::destroy($article->id);
+
+        return redirect()->route('home');
     }
 
     public function create() {

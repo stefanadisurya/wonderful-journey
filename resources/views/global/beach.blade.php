@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Wonderful Journey | Home')
+@section('title', 'Wonderful Journey | Beach')
 
 @section('styles')
     <style>
@@ -10,7 +10,7 @@
         }
         
         .jumbotron {
-            background-image: url('assets/image/header.jpg');
+            background-image: url('assets/image/header4.jpg');
             background-repeat: no-repeat;
             background-position: center;
             height: 500px;
@@ -26,13 +26,13 @@
 @section('content')
 <div class="jumbotron jumbotron-fluid">
     <div class="container text-center">
-      <h1 class="display-4 text-white">Wonderful Journey</h1>
-      <p class="lead text-white">Blog of Indonesia Tourism</p>
+    <h1 class="display-4 text-white">Wonderful Journey</h1>
+    <p class="lead text-white">Blog of Indonesia Tourism</p>
     </div>
 </div>
 
 <div class="container">
-    <p class="h1 text-center my-4 font-weight-bold">Articles</p>
+    <p class="h1 text-center my-4 font-weight-bold">Beach Articles</p>
     <div class="row">
         @forelse($articles as $article)
             <div class="col-md-4 col-sm-6 d-flex justify-content-center my-3">
@@ -46,9 +46,26 @@
                         @elseif ($article->category->name == "Mountain")
                             <p class="card-text font-italic"><b>Category:</b> <a href="{{ route('mountain') }}" class="text-decoration-none">{{ $article->category->name }}</a></p>
                         @endif
-                        <a href="/article/{{ $article->id }}" class="text-decoration-none">
-                            <button class="btn btn-dark btn-block">Full story</button>
-                        </a>
+                        @guest
+                            <a href="/article/{{ $article->id }}" class="text-decoration-none">
+                                <button class="btn btn-dark btn-block">Full story</button>
+                            </a>
+                        @else    
+                        @if (auth()->user()->role=="Admin")
+                            <a href="/admin/article/{{ $article->id }}" class="text-decoration-none">
+                                <button class="btn btn-dark btn-block">Full story</button>
+                            </a>
+                            <form action="/article/{{ $article->id }}" method="POST">
+                                @method('delete')
+                                @csrf
+                                <button type="submit" class="btn btn-danger btn-block mt-2">Delete Article</button>
+                            </form>
+                        @elseif (auth()->user()->role=="User")
+                            <a href="/user/article/{{ $article->id }}" class="text-decoration-none">
+                                <button class="btn btn-dark btn-block">Full story</button>
+                            </a>
+                        @endif
+                        @endguest
                     </div>
                 </div>
             </div>

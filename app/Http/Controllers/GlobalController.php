@@ -18,6 +18,22 @@ class GlobalController extends Controller
         return view('global.home', ['user' => $user, 'articles' => $articles]);
     }
 
+    public function beach() {
+        $user = auth()->user();
+        $articles = Article::where('category_id', 1)->get();
+        return view('global.beach', ['user' => $user, 'articles' => $articles]);
+    }
+
+    public function mountain() {
+        $user = auth()->user();
+        $articles = Article::where('category_id', 2)->get();
+        return view('global.mountain', ['user' => $user, 'articles' => $articles]);
+    }
+
+    public function about() {
+        return view('global.about');
+    }
+
     public function profile(User $user) {
         return view('global.profile', ['user' => $user]);
     }

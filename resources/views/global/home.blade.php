@@ -48,8 +48,12 @@
                     <img src="{{ asset('assets/image/' . $article->image) }}" class="card-img-top" style="height: 15rem;" alt="...">
                     <div class="card-body">
                         <h5 class="card-title font-weight-bold">{{ $article->title }}</h5>
-                        <p class="card-text">{{ substr($article->description, 0,  84) }} ...</p>
-                        <p class="card-text font-italic"><b>Category:</b> <a href="#" class="text-decoration-none">{{ $article->category->name }}</a></p>
+                        <p class="card-text text-muted">{{ substr($article->description, 0,  84) }} ...</p>
+                        @if ($article->category->name == "Beach")    
+                            <p class="card-text font-italic"><b>Category:</b> <a href="{{ route('beach') }}" class="text-decoration-none">{{ $article->category->name }}</a></p>
+                        @elseif ($article->category->name == "Mountain")
+                            <p class="card-text font-italic"><b>Category:</b> <a href="{{ route('mountain') }}" class="text-decoration-none">{{ $article->category->name }}</a></p>
+                        @endif
                         @if (auth()->user()->role=="Admin")
                             <a href="/admin/article/{{ $article->id }}" class="text-decoration-none">
                                 <button class="btn btn-dark btn-block">Full story</button>
@@ -69,11 +73,11 @@
             </div>
 
             @empty
-            <div class="row">
                 <div class="col-md-12 col-sm-12 d-flex justify-content-center my-3">
-                    <p class="h4 text-muted text-center">No article to display</p>
+                    <div class="alert alert-danger" role="alert">
+                        No article to display
+                      </div>
                 </div>
-            </div>
         @endforelse
     </div>
 </div>

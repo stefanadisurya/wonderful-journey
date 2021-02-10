@@ -11,4 +11,8 @@ class GuestController extends Controller
         $articles = Article::all()->take(6);
         return view('guest.home', ['articles' => $articles]);
     }
+
+    public function show(Article $article) {
+        return view('guest.show', ['article' => $article]);
+    }
 }

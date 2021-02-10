@@ -16,18 +16,18 @@
             </a>
 
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item text-dark" href="{{ route('root') }}">
+                <a class="dropdown-item text-dark" href="{{ route('beach') }}">
                   Beach
                 </a>
 
-                <a class="dropdown-item text-dark" href="{{ route('root') }}">
+                <a class="dropdown-item text-dark" href="{{ route('mountain') }}">
                     Mountain
                 </a>
               </div>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link text-white js-scroll-trigger mr-3" href=" {{ route('root') }}">About Us</a>
+            <a class="nav-link text-white js-scroll-trigger mr-3" href=" {{ route('about') }}">About Us</a>
         </li>
       </ul>
     @else
@@ -44,6 +44,26 @@
                 <li class="nav-item">
                     <a class="nav-link text-white js-scroll-trigger mr-3" href=" {{ route('user') }}">User</a>
                 </li>
+
+                <li class="nav-item dropdown">
+                    <a id="navbarDropdown" class="nav-link dropdown-toggle text-white mr-3" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                      Categories
+                    </a>
+        
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item text-dark" href="{{ route('beach') }}">
+                          Beach
+                        </a>
+        
+                        <a class="dropdown-item text-dark" href="{{ route('mountain') }}">
+                            Mountain
+                        </a>
+                      </div>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link text-white js-scroll-trigger mr-3" href=" {{ route('about') }}">About Us</a>
+                </li>
             </ul>
 
         @elseif(auth()->user()->role=="User")
@@ -58,6 +78,26 @@
 
                 <li class="nav-item">
                     <a class="nav-link text-white js-scroll-trigger mr-3" href=" {{ route('blog') }}">Blog</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a id="navbarDropdown" class="nav-link dropdown-toggle text-white mr-3" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                      Categories
+                    </a>
+        
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item text-dark" href="{{ route('beach') }}">
+                          Beach
+                        </a>
+        
+                        <a class="dropdown-item text-dark" href="{{ route('mountain') }}">
+                            Mountain
+                        </a>
+                      </div>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link text-white js-scroll-trigger mr-3" href=" {{ route('about') }}">About Us</a>
                 </li>
             </ul>
       @endif
