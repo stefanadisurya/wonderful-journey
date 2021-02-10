@@ -53,11 +53,11 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link text-white js-scroll-trigger mr-3" href=" {{ route('home') }}">Profile</a>
+                    <a class="nav-link text-white js-scroll-trigger mr-3" href=" {{ route('profile', auth()->user()) }}">Profile</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link text-white js-scroll-trigger mr-3" href=" {{ route('home') }}">Blog</a>
+                    <a class="nav-link text-white js-scroll-trigger mr-3" href=" {{ route('blog') }}">Blog</a>
                 </li>
             </ul>
       @endif

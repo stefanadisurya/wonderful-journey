@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Wonderful Journey | Profile')
+@section('title', 'Wonderful Journey | New Blog')
 
 @section('styles')
     <style>
@@ -32,16 +32,16 @@
         <div class="col-md-8">
             <div class="card border-light my-3">
                 <div class="card-body">
-                    <form method="POST" action="{{ route('profile', $user) }}">
+                    <form method="POST" action="{{ route('create') }}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}:</label>
+                            <label for="title" class="col-md-4 col-form-label text-md-right">{{ __('Title') }}:</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $user->name }}" required autocomplete="name" autofocus>
+                                <input id="title" type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{ old('title') }}" required autocomplete="title" autofocus>
 
-                                @error('name')
+                                @error('title')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -50,12 +50,15 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Email') }}:</label>
+                            <label for="category" class="col-md-4 col-form-label text-md-right">{{ __('Category') }}:</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $user->email }}" required autocomplete="email" autofocus>
+                                <select id="category" name="category" class="custom-select form-control @error('category') is-invalid @enderror" required autofocus>
+                                    <option value="Beach">Beach</option>
+                                    <option value="Mountain">Mountain</option>
+                                  </select>
 
-                                @error('email')
+                                @error('category')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -64,12 +67,26 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="phone" class="col-md-4 col-form-label text-md-right">{{ __('Phone') }}:</label>
+                            <label for="image" class="col-md-4 col-form-label text-md-right">{{ __('Image') }}:</label>
 
                             <div class="col-md-6">
-                                <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ $user->phone }}" required autocomplete="phone" autofocus>
+                                <input type="file" class="form-control @error('image') is-invalid @enderror" name="image" id="image" value="{{ old('image') }}" required>
 
-                                @error('phone')
+                                @error('image')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('Story') }}:</label>
+
+                            <div class="col-md-6">
+                                <input id="description" rows="5" cols="80" type="text" class="form-control @error('description') is-invalid @enderror" name="description" value="{{ old('description') }}" required autocomplete="description" autofocus>
+
+                                @error('description')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -85,18 +102,6 @@
                             </div>
                         </div>
                     </form>
-
-                    @if (auth()->user()->role=="Admin")
-                        <div class="row mb-0">
-                            <div class="col-md-8 offset-md-4 mt-2">
-                                <form action="/admin/profile/{{ $user->id }}" method="POST">
-                                    @method('delete')
-                                    @csrf
-                                    <button type="submit" class="btn btn-danger">Delete</button>
-                                </form>
-                            </div>
-                        </div>
-                    @endif
                 </div>
             </div>
         </div>

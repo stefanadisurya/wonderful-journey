@@ -32,5 +32,14 @@ Route::group(['middleware' => ['auth', 'roles:Admin']], function() {
     Route::delete('/admin/profile/{user}', 'AdminController@destroyUser2')->name('deleteuser2');
 });
 
+Route::group(['middleware' => ['auth', 'roles:User']], function() {
+    Route::get('/user/blog', 'UserController@blog')->name('blog');
+    Route::delete('/user/blog/{article}', 'UserController@destroyArticle')->name('deleteuserarticle');
+    Route::get('/user/{user}/blog/{article}', 'UserController@show')->name('showuserarticle');
+    Route::delete('/user/{user}/blog/{article}', 'UserController@destroyArticle2')->name('deleteuserarticle2');
+    Route::get('/user/create', 'UserController@create')->name('create');
+    Route::post('/user/create', 'UserController@store');
+});
+
 Route::get('/', 'GuestController@home')->name('root')->middleware('guest');
 Route::get('/article/{article}', 'GlobalController@show')->name('show');

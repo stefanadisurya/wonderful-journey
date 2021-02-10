@@ -32,12 +32,20 @@
 </div>
 
 <div class="container">
+    @if (auth()->user()->role=="User")
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            Welcome, <strong>{{ $user->name }}</strong>!
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+    @endif
     <p class="h1 text-center my-4 font-weight-bold">Articles</p>
     <div class="row">
         @forelse($articles as $article)
             <div class="col-md-4 col-sm-6 d-flex justify-content-center my-3">
                 <div class="card" style="width: 18rem;">
-                    <img src="{{ asset('assets/image/' . $article->image) }}" class="card-img-top" alt="...">
+                    <img src="{{ asset('assets/image/' . $article->image) }}" class="card-img-top" style="height: 15rem;" alt="...">
                     <div class="card-body">
                         <h5 class="card-title font-weight-bold">{{ $article->title }}</h5>
                         <p class="card-text">{{ substr($article->description, 0,  84) }} ...</p>
