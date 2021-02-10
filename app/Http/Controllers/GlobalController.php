@@ -14,7 +14,7 @@ class GlobalController extends Controller
 
     public function home() {
         $user = auth()->user();
-        $articles = Article::all();
+        $articles = Article::paginate(6);
         return view('global.home', ['user' => $user, 'articles' => $articles]);
     }
 

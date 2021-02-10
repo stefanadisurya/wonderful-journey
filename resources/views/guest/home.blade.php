@@ -60,6 +60,10 @@
                       </div>
                 </div>
         @endforelse
+
+        <div class="container d-flex justify-content-center my-3">
+            {{ $articles->links() }}
+        </div>
     </div>
 </div>
 @endsection

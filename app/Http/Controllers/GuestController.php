@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class GuestController extends Controller
 {
     public function home() {
-        $articles = Article::all()->take(6);
+        $articles = Article::paginate(6);
         return view('guest.home', ['articles' => $articles]);
     }
 
