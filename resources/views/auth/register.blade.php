@@ -102,6 +102,15 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="term" class="col-md-4 col-form-label text-md-right"></label>
+
+                            <div class="col-md-6">
+                                <input type="checkbox" class="form-check-input" id="term" name="term" value="yes">
+                                <label for="term" class="form-check-label"> I agree to <a href="https://en.wikipedia.org/wiki/Terms_of_service" class="text-decoration-none">terms & condition</a></label><br>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <div class="col-md-4"></div>
                             <div class="col-md-6">
                                <p>Already have an account? <a href="{{ route('login') }}" class="text-decoration-none">Login</a></p>
