@@ -38,11 +38,11 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link text-white js-scroll-trigger mr-3" href=" {{ route('home') }}">Admin</a>
+                    <a class="nav-link text-white js-scroll-trigger mr-3" href=" {{ route('admin') }}">Admin</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link text-white js-scroll-trigger mr-3" href=" {{ route('home') }}">User</a>
+                    <a class="nav-link text-white js-scroll-trigger mr-3" href=" {{ route('user') }}">User</a>
                 </li>
             </ul>
 
@@ -89,6 +89,7 @@
                     <a class="nav-link text-white js-scroll-trigger mr-3" href="{{ route('logout') }}"
                     onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">
+                    <i class="fas fa-sign-out-alt mr-2"></i>
                     {{ __('Logout') }}
                     </a>
 
@@ -103,6 +104,7 @@
                     <a class="nav-link text-white js-scroll-trigger mr-3" href="{{ route('logout') }}"
                     onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">
+                    <i class="fas fa-sign-out-alt mr-2"></i>
                     {{ __('Logout') }}
                     </a>
 

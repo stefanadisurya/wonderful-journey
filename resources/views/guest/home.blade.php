@@ -4,6 +4,11 @@
 
 @section('styles')
     <style>
+        .card {
+            -webkit-box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.15);
+            box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.15);
+        }
+        
         .jumbotron {
             background-image: url('assets/image/header.jpg');
             background-repeat: no-repeat;
@@ -19,7 +24,7 @@
 @endsection
 
 @section('content')
-<div class="jumbotron">
+<div class="jumbotron jumbotron-fluid">
     <div class="container text-center">
       <h1 class="display-4 text-white">Wonderful Journey</h1>
       <p class="lead text-white">Blog of Indonesia Tourism</p>
@@ -27,7 +32,7 @@
 </div>
 
 <div class="container">
-    <p class="h1 text-center my-4 font-weight-bold">Latest Articles</p>
+    <p class="h1 text-center my-4 font-weight-bold">Articles</p>
     <div class="row">
         @forelse($articles as $article)
             <div class="col-md-4 col-sm-6 d-flex justify-content-center my-3">
@@ -35,12 +40,11 @@
                     <img src="{{ asset('assets/image/' . $article->image) }}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title font-weight-bold">{{ $article->title }}</h5>
-                        <p class="card-text">{{ substr($article->description, 0,  84) }} ...
-                            <span>
-                                <a href=""><p>Full story</p></a>
-                            </span>
-                        </p>
-                            <p class="card-text font-italic"><b>Category:</b> <a href="#">{{ $article->category->name }}</a></p>
+                        <p class="card-text">{{ substr($article->description, 0,  84) }} ...</p>
+                        <p class="card-text font-italic"><b>Category:</b> <a href="#" class="text-decoration-none">{{ $article->category->name }}</a></p>
+                        <a href="/article/{{ $article->id }}" class="text-decoration-none">
+                            <button class="btn btn-dark btn-block">Full story</button>
+                        </a>
                     </div>
                 </div>
             </div>
