@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use App\User;
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
 
 class GlobalController extends Controller
@@ -51,6 +52,7 @@ class GlobalController extends Controller
             'phone' => $request->phone,
         ]);
 
+        Alert::toast('Update profile success!', 'success'); // Dapat di-comment jika error
         return redirect()->route('user');
     }
 }

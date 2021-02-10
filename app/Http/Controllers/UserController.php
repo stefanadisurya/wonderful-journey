@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use App\User;
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -25,18 +26,21 @@ class UserController extends Controller
     public function destroyArticle(Article $article) {
         Article::destroy($article->id);
 
+        Alert::toast('Delete article success!', 'success'); // Dapat di-comment jika error
         return redirect()->route('blog');
     }
 
     public function destroyArticle2(User $user, Article $article) {
         Article::destroy($article->id);
 
+        Alert::toast('Delete article success!', 'success'); // Dapat di-comment jika error
         return redirect()->route('blog');
     }
 
     public function destroyArticle3(Article $article) {
         Article::destroy($article->id);
 
+        Alert::toast('Delete article success!', 'success'); // Dapat di-comment jika error
         return redirect()->route('home');
     }
 
@@ -72,6 +76,7 @@ class UserController extends Controller
 
         $request->image->storeAs('image', $filename, 'public');
 
+        Alert::toast('Create article success!', 'success'); // Dapat di-comment jika error
         return redirect()->route('home');
     }
 }

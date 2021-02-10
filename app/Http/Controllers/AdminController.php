@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use App\User;
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -26,6 +27,7 @@ class AdminController extends Controller
         Article::where('user_id', $user->id)->delete();
         User::destroy($user->id);
 
+        Alert::toast('Delete user success!', 'success'); // Dapat di-comment jika error
         return redirect()->route('user');
     }
 
@@ -33,18 +35,21 @@ class AdminController extends Controller
         Article::where('user_id', $user->id)->delete();
         User::destroy($user->id);
 
+        Alert::toast('Delete user success!', 'success'); // Dapat di-comment jika error
         return redirect()->route('user');
     }
 
     public function destroyArticle(Article $article) {
         Article::destroy($article->id);
 
+        Alert::toast('Delete article success!', 'success'); // Dapat di-comment jika error
         return redirect()->route('home');
     }
 
     public function destroyArticleFromHome(Article $article) {
         Article::destroy($article->id);
 
+        Alert::toast('Delete article success!', 'success'); // Dapat di-comment jika error
         return redirect()->route('home');
     }
 }
