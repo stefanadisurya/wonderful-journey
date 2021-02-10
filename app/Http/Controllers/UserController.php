@@ -63,7 +63,7 @@ class UserController extends Controller
         if($request->category == "Beach") {
             $category_id = 1;
         } else if($request->category == "Mountain") {
-            $category_id = 1;
+            $category_id = 2;
         }
 
         Article::create([
